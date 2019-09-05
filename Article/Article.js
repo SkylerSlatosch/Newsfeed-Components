@@ -23,8 +23,8 @@ const data = [
         moff calamari mon obi-wan. Solo grievous lando coruscant. Jinn darth palpatine obi-wan mon.`
   },
   {
-    title: 'Javascript and You, ES6',
-    date: 'May 7th, 2019',
+    title: '#TEAMCARLOS',
+    date: 'To infinity and Beyond',
     firstParagraph: `Alohamora wand elf parchment, Wingardium Leviosa hippogriff, house dementors betrayal. Holly, Snape centaur portkey ghost
         Hermione spell bezoar Scabbers. Peruvian-Night-Powder werewolf, Dobby pear-tickle half-moon-glasses, Knight-Bus. Padfoot
         snargaluff seeker: Hagrid broomstick mischief managed. Snitch Fluffy rock-cake, 9 ¾ dress robes I must not tell lies. Mudbloods
@@ -43,8 +43,8 @@ const data = [
         sing above the ground, Ginny Weasley bright red. Fanged frisbees, phoenix tears good clean match.`
   },
   {
-    title: 'React vs Angular vs Vue',
-    date: 'June 7th, 2019',
+    title: 'Fortnite is key to life',
+    date: 'forever',
     firstParagraph: `Bulbasaur Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ivysaur Lorem ipsum dolor sit amet, consectetur adipiscing
         elit. Venusaur Lorem ipsum dolor sit amet, consectetur adipiscing elit. Charmander Lorem ipsum dolor sit amet, consectetur
         adipiscing elit. Charmeleon Lorem ipsum dolor sit amet, consectetur adipiscing elit. Charizard Lorem ipsum dolor sit amet,
@@ -71,8 +71,8 @@ const data = [
         Castform Lotad the power that's inside Burnt Berry Makuhita. Ghost Ariados Corphish Dusclops Golbat Gligar Zweilous.`
   },
   {
-    title: 'Professional Software Development in 2019',
-    date: 'Jan 1st, 2019',
+    title: 'IDK Man just doing my best',
+    date: 'November 2099',
     firstParagraph: `Hodor hodor HODOR! Hodor hodor - hodor, hodor. Hodor hodor... Hodor hodor hodor; hodor hodor. Hodor hodor hodor, hodor, hodor
           hodor. Hodor, hodor. Hodor. Hodor, hodor - hodor... Hodor hodor hodor; hodor HODOR hodor, hodor hodor?! Hodor hodor, hodor.
           Hodor hodor hodor hodor hodor! Hodor hodor - HODOR hodor, hodor hodor hodor hodor hodor; hodor hodor? `,
@@ -112,3 +112,72 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
+const articleContainer = document.querySelector(".articles");
+	
+	data.forEach(feature => {
+	  articleContainer.appendChild(
+	    createArticle(
+	      feature.title,
+	      feature.date,
+	      feature.firstParagraph,
+	      feature.secondParagraph,
+	      feature.thirdParagraph
+	    )
+	  );
+	});
+	
+	function createArticle(
+	  title,
+	  date,
+	  firstParagraph,
+	  secondParagraph,
+	  thirdParagraph
+	) {
+	  // creating elements
+	
+	  const article = document.createElement("div");
+	  const articleTitle = document.createElement("h2");
+	  const articleDate = document.createElement("p");
+	  const articleP1 = document.createElement("p");
+	  const articleP2 = document.createElement("p");
+	  const articleP3 = document.createElement("p");
+	  const articleExpandBtn = document.createElement("span");
+	
+	  // structure elements
+	
+	  const itemsHolder = [
+	    articleTitle,
+	    articleDate,
+	    articleP1,
+	    articleP2,
+	    articleP3,
+	    articleExpandBtn
+	  ];
+	
+	  function appendChildren(parent, children) {
+	    children.forEach(child => {
+	      parent.appendChild(child);
+	    });
+    }
+    
+    appendChildren(article, itemsHolder);
+	
+	  // set class names
+	  article.classList.add("article");
+	  articleDate.classList.add("date");
+	  articleExpandBtn.classList.add("expandButton");
+	
+	  // set content
+	  articleExpandBtn.textContent = "Click to Expand";
+	  articleTitle.textContent = title;
+	  articleDate.textContent = date;
+	  articleP1.textContent = firstParagraph;
+	  articleP2.textContent = secondParagraph;
+	  articleP3.textContent = thirdParagraph;
+	
+	  // button event
+	  articleExpandBtn.addEventListener("click", () => {
+	    article.classList.toggle("article-open");
+	  });
+	  return article;
+	}
